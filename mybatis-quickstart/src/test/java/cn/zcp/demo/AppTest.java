@@ -12,7 +12,7 @@ import org.junit.Test;
 import java.io.InputStream;
 
 /**
- * Unit test for simple App.
+ * Unit test for simple AppOne.
  */
 public class AppTest {
     /**
@@ -56,7 +56,7 @@ public class AppTest {
          *  1、第一个参数：映射文件中statement的id，等于namespace+"."+satement的id
          *  2、第二个参数：指定和映射文件中所匹配的paramenterType类型的对象
          */
-        User user = sqlSession.selectOne("user.findUserByName", "cc");
+        User user = sqlSession.selectOne("user.findUserByName", "w");
         System.out.println(user);
 
         sqlSession.close();
