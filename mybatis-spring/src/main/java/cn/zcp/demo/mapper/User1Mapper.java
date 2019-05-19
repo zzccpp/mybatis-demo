@@ -20,7 +20,7 @@ import cn.zcp.demo.bean.User;
  * 4、mapper.java接口中方法输入参数与xml中statement的resultType指定类型一致
  *
  */
-public interface UserMapper {
+public interface User1Mapper {
 
     /**
      * 根据ID查询一个用户

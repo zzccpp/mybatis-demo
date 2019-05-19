@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+
+
+    <!-- 加载属性配置文件1 -->
+    <!-- <context:property-placeholder file-encoding="utf-8" ignore-resource-not-found="true"
+    location="classpath:config/druid.properties,classpath:config/maisender.properties,classpath:config/redis.properties"/> -->
+    <!-- 加载属性配置文件2 -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="fileEncoding" value="utf-8"></property>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:druid.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!-- druid数据库连接池配置start -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${druid.url}"/>
+        <property name="username" value="${druid.username}"/>
+        <property name="password" value="${druid.password}"/>
+        <property name="initialSize" value="${druid.initialSize}"/>
+        <property name="minIdle" value="${druid.minIdle}"/>
+        <property name="maxActive" value="${druid.maxActive}"/>
+        <property name="maxWait" value="${druid.maxWait}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}"/>
+        <property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}"/>
+        <property name="validationQuery" value="${druid.validationQuery}"/>
+        <property name="testOnBorrow" value="${druid.testOnBorrow}"/>
+        <property name="testOnReturn" value="${druid.testOnReturn}"/>
+        <property name="testWhileIdle" value="${druid.testWhileIdle}"/>
+        <property name="poolPreparedStatements" value="${druid.poolPreparedStatements}"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="${druid.maxPoolPreparedStatementPerConnectionSize}"/>
+        <property name="filters" value="${druid.filters}"/>
+    </bean>
+    <!-- druid数据库连接池配置end -->
+
+    <!--mybatis整合spring配置-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--手动配置xml文件-->
+        <!--<property name="mapperLocations" value="classpath*:sqlmap/*.xml" />-->
+
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <!--<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="cn.zcp.demo.dao.UserDao" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>-->
+
+    <!--遵循规范：需要将mapper接口类名和mapper.xml映射文件名称保持一致，且在一个目录中
+        注意：maven中需要编译时，编译xml文件
+    -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--不能使用*号通配符，扫描多个包是用半角逗号分隔-->
+        <property name="basePackage" value="cn.zcp.demo.mapper"/>
+        <property name="sqlSessionFactoryBeanName"  value="sqlSessionFactory"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+        <context id="mysqlTables" targetRuntime="MyBatis3">
+            <!-- 生成的Java文件的编码 -->
+            <property name="javaFileEncoding" value="UTF-8"/>
+            <!-- 格式化java代码 -->
+            <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+            <!-- 格式化XML代码 -->
+            <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+            <commentGenerator>
+            <!-- 是否去除自动生成的注释 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库的连接信息-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://182.61.44.56:3306/mybatis-demo"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+        <!--默认为false，把JDBC DECIMAL 和NUMERIC类型解析为Integer，为true时
+	把JDBC DECIMAL 和NUMERIC类型解析为java.math.BigDecimal-->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!--生成实体model的路径-->
+        <javaModelGenerator targetPackage="cn.zcp.demo.model" targetProject="E:/IdeaProjects/mybatis-demo/mybatis-nxproject/src/main/java">
+            <!--enableSubPackages:是否让schema作为包的后缀-->
+            <property name="enableSubPackages" value="true" />
+            <!--从数据库返回的值被清理前后的空格-->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!--生成mapper.xml文件路径-->
+        <sqlMapGenerator targetPackage="cn.zcp.demo.mapper"  targetProject="E:/IdeaProjects/mybatis-demo/mybatis-nxproject/src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!--
+        生成mapper接口文件路径
+        targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
+        targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
+        -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.zcp.demo.mapper"  targetProject="E:/IdeaProjects/mybatis-demo/mybatis-nxproject/src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!--指定表    -->
+        <table schema="" tableName="t_user"></table>
+        <table schema="" tableName="t_city"></table>
+        <!--有些表的字段需要指定java类型-->
+        <!--<table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="ID" sqlStatement="DB2" identity="true" />
+            <columnOverride column="DATE_FIELD" property="startDate" />
+            <ignoreColumn column="FRED" />
+            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+        </table>-->
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--全局参数 , 一般设置运行参数,需要才设置,一般mybatis会自动帮优化-->
+    <!--<settings>-->
+        <!--<setting name="" value=""/>-->
+    <!--</settings>-->
+
+    <!--定义别名-->
+    <typeAliases>
+        <!--定义个别-->
+        <typeAlias type="cn.zcp.demo.bean.User" alias="user"/>
+        <!--批量定义别名，指定包名，mybatis自动扫描包中的po类，自动定义别名，别名就是类名（首字母大小写都可以）-->
+        <package name="cn.zcp.demo.bean"/>
+    </typeAliases>
+
+    <!--类型处理器,mybatis中通过typeHandlers完成jdbc类型和jaca类型的转换
+        通产情况下，mybatis提供的类型处理类型满足日常开发的需求，不需要额外定义-->
+    <!--<typeHandlers>-->
+
+    <!--</typeHandlers>-->
+
+    <!--对象工厂-->
+    <!--<objectFactory type=""/>-->
+
+    <!--插件-->
+    <!--<plugins>-->
+        <!--<plugin interceptor=""></plugin>-->
+    <!--</plugins>-->
+
+    <!--
+        映射器
+    -->
+    <mappers>
+        <!--单个映射文件加载-->
+        <!--<mapper resource="sqlmap/User1Mapper.xml"/>-->
+
+        <!--通过mapper接口加载映射文件-->
+        <!--遵循规范：需要将mapper接口类名和mapper.xml映射文件名称保持一致，且在一个目录中-->
+        <!--上边规范的前提是：使用的是mapper代理方法-->
+        <!--<mapper class="cn.zcp.demo.mapper.UserMapper"/>-->
+
+        <!--批量加载mapper，指定mapper接口的包名，mybatis自动扫描包下边所有mapper接口进行加载-->
+        <!--遵循规范：需要将mapper接口类名和mapper.xml映射文件名称保持一致，且在一个目录中-->
+        <!--<package name="cn.zcp.demo.mapper"/>-->
+    </mappers>
+</configuration>
+
+<!--
+    需求：将数据连接参数单独配置在db.properties中,只需要在config文件中引用(原因：方便参数进行统一管理，其他xml可以引用)
+    properties特性: 注意有加载顺序   properties文件->properties子标签->parameterType
+    typeAliases:可以自定义别名，以便在parameterType和resultType中使用，有默认别名
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
