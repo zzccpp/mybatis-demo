@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @author zhongchunping
@@ -18,6 +18,7 @@ import java.util.List;
  */
 @Controller
 public class CityController {
+    private static Logger logger =  Logger.getLogger(CityController.class.getName());
 
     /*@Resource
     private CityMapper cityMapper;*/
@@ -36,6 +37,7 @@ public class CityController {
     @RequestMapping("/findCityById")
     @ResponseBody
     public Object findCityById(Integer id){
+        logger.info("查询ID为："+id);
         City city = cityMapper.findCityById(id);
         return city;
     }
