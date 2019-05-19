@@ -30,4 +30,13 @@ public class City {
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
     }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", cityName='" + cityName + '\'' +
+                ", state='" + state + '\'' +
+                '}';
+    }
 }
