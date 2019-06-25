@@ -20,4 +20,8 @@ public interface CityMapper {
     List<City> findByState(@Param("state") String state);
 
     City findCityById(int id);
+
+    //void findCityById(String name,int x);
+
+    //void insertCity(City city);
 }

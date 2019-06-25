@@ -1,0 +1,16 @@
+1、mybatis使用注解和xml配置SQL问题
+
+    可以同时兼容使用，但是不能出现一个ID方法中，xml中有配置又有注解的方式，系统启动会报如下异常:
+
+    nested exception is java.lang.IllegalArgumentException: Mapped Statements collection already contains value for cn.zcp.demo.mapper.CityMapper.findCityById. please check file
+
+
+2、Mapper接口中定义了方法，但是没有写实现SQL问题
+
+    系统启动不会报错，当调用了此方法时会报如下异常：
+    org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): cn.zcp.demo.mapper.CityMapper.insertCity
+
+3、Mapper中定义了两个相同名称的方法问题(方法重载)
+
+    系统启动不报错,访问报如下异常
+    org.apache.ibatis.binding.BindingException: Parameter 'id' not found. Available parameters are [name, x, param1, param2]

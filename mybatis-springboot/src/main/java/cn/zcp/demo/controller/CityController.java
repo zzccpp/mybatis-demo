@@ -31,6 +31,8 @@ public class CityController {
     public Object findByState(String state){
 
         List<City> citys = cityMapper.findByState(state);
+        /*System.out.println("findByState");
+        cityMapper.findCityById("xxx",1);*/
         return citys;
     }
 
@@ -41,6 +43,13 @@ public class CityController {
         City city = cityMapper.findCityById(id);
         return city;
     }
-
+    /*@RequestMapping("/addCity")
+    public String addCity(){
+        City city = new City();
+        city.setCityName("cname");
+        city.setState("0");
+        cityMapper.insertCity(city);
+        return "success";
+    }*/
 
 }
