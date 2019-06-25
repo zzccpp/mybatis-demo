@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
     <!--加载属性文件-->
     <properties resource="db.properties">
         <!-- 也可以在这里添加一些属性配置-->
@@ -11,9 +10,9 @@
     </properties>
 
     <!--全局参数 , 一般设置运行参数,需要才设置,一般mybatis会自动帮优化-->
-    <!--<settings>-->
-        <!--<setting name="" value=""/>-->
-    <!--</settings>-->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
 
     <!--定义别名-->
     <typeAliases>
@@ -23,7 +22,7 @@
         <package name="cn.zcp.demo.bean"/>
     </typeAliases>
 
-    <!--类型处理器,mybatis中通过typeHandlers完成jdbc类型和jaca类型的转换
+    <!--类型处理器,mybatis中通过typeHandlers完成jdbc类型和java类型的转换
         通产情况下，mybatis提供的类型处理类型满足日常开发的需求，不需要额外定义-->
     <!--<typeHandlers>-->
 

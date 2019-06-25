@@ -31,7 +31,9 @@ public class AppOne {
          */
         User user = sqlSession.selectOne("user.findUserById", 1);
         System.out.println(user);
-
+        //验证1级缓存
+        user = sqlSession.selectOne("user.findUserById", 1);
+        System.out.println(user);
         sqlSession.close();
     }
 }

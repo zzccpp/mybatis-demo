@@ -29,7 +29,10 @@ public class AppMapper {
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 
         User user = userMapper.findUserById(1);
-
+        System.out.println(user);
+        //sqlSession.commit(); 关闭缓存,或者update,delete,insert的时候就会清除
+        //验证1级缓存
+        user = userMapper.findUserById(1);
         System.out.println(user);
     }
 }

@@ -9,3 +9,14 @@ create table if not exists t_city(
 
 --添加记录
 insert into t_city(cityName,state) value('xxxxx','1');
+
+--创建t_user表
+create table if not exists t_user(
+    id int primary key auto_increment,
+    name varchar(20),
+    age int
+)engine=innodb charset=utf8 collate=utf8_general_ci;
+
+--添加记录
+insert into t_user(name,age) value('zhangsan',18);
+insert into t_user(name,age) value('lisi',20);
