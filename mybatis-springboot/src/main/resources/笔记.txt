@@ -17,16 +17,17 @@
 
 
 4、自定义typeHandlers
-
+    在quikstart模块中
 5、编写一个plugin,多个intercept谁先执行,
-
+    在quickstart模块中
 6、配置多个environment(数据源)
-
+    在quickstart模块中
 7、mybatis为啥用mapper接口
 
-8、一个公司问太细的话,其实能力也好不到哪去
+8、问太细的话,其实能力也好不到哪去
 
 9、一级缓存（sqlSession）的优点及可能出现的问题
+    减少数据库操作压力，容易脏读
 
 10、二级缓存（namespace）的优点及可能出现的问题-【一般使用第三方redis,Echache来缓存】
     1.脏数据  2.全部失效（执行update\insert\delete时）
