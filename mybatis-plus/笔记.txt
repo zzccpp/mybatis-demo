@@ -1,0 +1,7 @@
+1、更深入的理解函数编程，看cn.zcp.demo.SampleTest类中定义与归纳
+
+2、H2数据库的使用,需要去官网下载http://www.h2database.com/html/main.html服务,安装
+
+    启动栏中找到H2应用Console（command line）,打开会自动打开浏览器,通过网页操作console来连接H2的数据库
+
+    注：应用中不需要去下载安装此数据库,此数据库不能保持多个连接，每次只允许一个连接

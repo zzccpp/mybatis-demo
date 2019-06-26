@@ -12,6 +12,7 @@
         <module>mybatis-quickstart</module>
         <module>mybatis-spring</module>
         <module>mybatis-nxproject</module>
+        <module>mybatis-plus</module>
     </modules>
 
     <name>mybatis-demo</name>
