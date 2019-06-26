@@ -34,5 +34,10 @@ public class AppMapper {
         //验证1级缓存
         user = userMapper.findUserById(1);
         System.out.println(user);
+
+        //测试自定义插件MyPlugin
+        user.setName("userUP");
+        userMapper.updateUser(user);
+
     }
 }

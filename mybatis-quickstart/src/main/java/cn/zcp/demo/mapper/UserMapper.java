@@ -44,4 +44,11 @@ public interface UserMapper {
      */
     void deleteUserById(int id) throws Exception;
 
+    /**
+     * 更新用户
+     * @param user
+     * @throws Exception
+     */
+    void updateUser(User user) throws Exception;
+
 }

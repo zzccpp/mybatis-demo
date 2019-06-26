@@ -35,5 +35,15 @@ public class AppOne {
         user = sqlSession.selectOne("user.findUserById", 1);
         System.out.println(user);
         sqlSession.close();
+
+
+        sqlSession = sessionFactory.openSession();
+        //使用自定义TypeHandler
+        sqlSession.insert("user.insertUser",user);
+        //使用默认
+        sqlSession.insert("user.insertUser1",user);
+
+        sqlSession.commit();
+
     }
 }

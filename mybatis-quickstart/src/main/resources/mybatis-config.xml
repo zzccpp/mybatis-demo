@@ -24,22 +24,52 @@
 
     <!--类型处理器,mybatis中通过typeHandlers完成jdbc类型和java类型的转换
         通产情况下，mybatis提供的类型处理类型满足日常开发的需求，不需要额外定义-->
-    <!--<typeHandlers>-->
-
-    <!--</typeHandlers>-->
+    <typeHandlers>
+        <typeHandler handler="cn.zcp.demo.typehandle.MyTypeHandle" javaType="String" jdbcType="VARCHAR"/>
+        <!--<package name="xxxx"/>也可以使用包扫描自定义类型处理器-->
+    </typeHandlers>
 
     <!--对象工厂-->
     <!--<objectFactory type=""/>-->
 
     <!--插件-->
-    <!--<plugins>-->
-        <!--<plugin interceptor=""></plugin>-->
-    <!--</plugins>-->
+    <plugins>
+        <plugin interceptor="cn.zcp.demo.plugin.MyPlugin">
+            <property name="someProperty" value="100"/>
+        </plugin>
+    </plugins>
 
-    <!--和Spring整合后environments配置将废除-->
-    <environments default="development">
+    <!--和Spring整合后environments配置将废除（没有必要配置事务管理器， 因为 Spring 模块会使用自带的管理器来覆盖前面的配置。）
+        可以配置多个environment,定义好Id,可以设置默认使用的数据源,也可以通过::
+        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environment);
+        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environment, properties);
+
+        如果未传environment参数,则使用默认配置
+    -->
+    <environments default="development">  <!--设置默认使用数据源-->
         <environment id="development">
             <!--使用jdbc事物管理，事物控制由mybatis管理-->
+            <transactionManager type="JDBC"/>
+            <!--
+            有三种内建的数据源类型（也就是 type=”[UNPOOLED|POOLED|JNDI]”）：
+
+            UNPOOLED– 这个数据源的实现只是每次被请求时打开和关闭连接。虽然有点慢，但对于在数据库连接可用性方面没有太高要求的简单应用程序来说，是一个很好的选择。 不同的数据库在性能方面的表现也是不一样的，对于某些数据库来说，使用连接池并不重要，这个配置就很适合这种情形。UNPOOLED 类型的数据源仅仅需要配置以下 5 种属性：
+
+            POOLED– 这种数据源的实现利用“池”的概念将 JDBC 连接对象组织起来，避免了创建新的连接实例时所必需的初始化和认证时间。 这是一种使得并发 Web 应用快速响应请求的流行处理方式。
+
+            JNDI – 这个数据源的实现是为了能在如 EJB 或应用服务器这类容器中使用，容器可以集中或在外部配置数据源，然后放置一个 JNDI 上下文的引用。这种数据源配置只需要两个属性：
+
+            具体配置可以查看官网:http://www.mybatis.org/mybatis-3/zh/configuration.html#objectFactory
+             -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+        <!--配置测试环境数据源-->
+        <environment id="test">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="${jdbc.driver}"/>
@@ -49,7 +79,6 @@
             </dataSource>
         </environment>
     </environments>
-
     <!--
         映射器
     -->
