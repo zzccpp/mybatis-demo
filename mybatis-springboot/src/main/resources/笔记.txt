@@ -19,7 +19,7 @@
 4、自定义typeHandlers
     在quikstart模块中
 5、编写一个plugin,多个intercept谁先执行,
-    在quickstart模块中
+    在quickstart模块中,拦截范围有限,所以不能用于日志打印
 6、配置多个environment(数据源)
     在quickstart模块中
 7、mybatis为啥用mapper接口
@@ -32,4 +32,9 @@
 10、二级缓存（namespace）的优点及可能出现的问题-【一般使用第三方redis,Echache来缓存】
     1.脏数据  2.全部失效（执行update\insert\delete时）
 
+11、使用PageHelper分页插件
+
+12、批量添加（1、循环调用添加   2、拼成一条SQL,但注意长度    3、使用batch）
+
+13、嵌套查询、嵌套结果查询
 
