@@ -87,4 +87,10 @@
         update t_user set name=#{name} where id=#{id}
     </update>
 
+
+    <!--查下所有用户-->
+    <select id="selectAll" resultType="cn.zcp.demo.bean.User" >
+        select * from t_user
+    </select>
+
 </mapper>

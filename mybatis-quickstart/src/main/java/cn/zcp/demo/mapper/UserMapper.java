@@ -2,6 +2,8 @@ package cn.zcp.demo.mapper;
 
 import cn.zcp.demo.bean.User;
 
+import java.util.List;
+
 /**
  * @author zhongchunping
  * @version 1.0
@@ -50,5 +52,14 @@ public interface UserMapper {
      * @throws Exception
      */
     void updateUser(User user) throws Exception;
+
+
+    /**
+     * 按分页查找
+     * @return
+     * @throws Exception
+     */
+    List<User> selectAll() throws Exception;
+
 
 }

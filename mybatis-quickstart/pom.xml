@@ -46,6 +46,14 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+
+        <!--导入PageHelper的依赖-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>
