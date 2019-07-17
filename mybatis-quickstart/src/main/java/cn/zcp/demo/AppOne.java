@@ -18,12 +18,14 @@ public class AppOne {
     public static void main( String[] args ) throws Exception{
         InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
 
-        //创建会话工厂
+        //源码分析：创建会话工厂,读取配置文件，映射文件，放入configuration类中，mapper文件中的sql存入mappedStatements<K,V>中，
+        //Key为命名空间.id  及  id，会同时存储两份
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
-        //通过工厂得到sqlSession
+        //源码分析：
+        //1、通过工厂得到sqlSession对象(其中有创建一个executor,如果有设置启用二级缓存（默认启用）则使用CachingExecutor包装，)
+        //2、查看是否有使用插件，如果有的话，循环插件对Executor生成代理对象,为了调用plug中intercept方法
         SqlSession sqlSession = sessionFactory.openSession();
-
         //通过sqlsession操作数据库
         /**
          *  1、第一个参数：映射文件中statement的id，等于namespace+"."+satement的id
