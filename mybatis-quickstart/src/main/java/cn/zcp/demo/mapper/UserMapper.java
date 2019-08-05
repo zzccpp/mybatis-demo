@@ -14,6 +14,7 @@ import java.util.List;
  *
  * 开发规范:
  * 1、在mapper.xml中namespace要等于mapper接口地址
+ *      会在getMapper对象的时候去拿名称+方法名去configuration对象中statement  Map中去查找
  *
  * 2、mapper.java接口中方法名与xml中statement的id一致
  *

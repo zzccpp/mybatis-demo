@@ -110,7 +110,7 @@
     <mappers>
         <!--单个映射文件加载-->
         <mapper resource="sqlmap/User.xml"/>
-        <mapper resource="mapper/UserMapper.xml"/>
+        <!--<mapper resource="mapper/UserMapper.xml"/>-->
 
         <!--通过mapper接口加载映射文件-->
         <!--遵循规范：需要将mapper接口类名和mapper.xml映射文件名称保持一致，且在一个目录中-->
@@ -119,7 +119,11 @@
 
         <!--批量加载mapper，指定mapper接口的包名，mybatis自动扫描包下边所有mapper接口进行加载-->
         <!--遵循规范：需要将mapper接口类名和mapper.xml映射文件名称保持一致，且在一个目录中-->
-        <!--<package name="cn.zcp.demo.mapper"/>-->
+        <!--
+            源码走查：在扫描到包下的所有接口时，会动态的在扫描接口名称+".xml"文件，如果有则添加至configration中的statement Map中
+            方法：org.apache.ibatis.builder.annotation.MapperAnnotationBuilder.loadXmlResource
+        -->
+        <package name="cn.zcp.demo"/>
     </mappers>
 </configuration>
 

@@ -31,6 +31,8 @@ public class AppOne {
          *  1、第一个参数：映射文件中statement的id，等于namespace+"."+satement的id
          *  2、第二个参数：指定和映射文件中所匹配的paramenterType类型的对象
          */
+        //源码分析：
+        //1、通过statement的id来查找相应的SQL,判断是否启用二级缓存，没有的话进行查询是否存在一级缓存[PerpetualCache.cache(Map)]中是否有，没有的话就直接查询数据库
         User user = sqlSession.selectOne("user.findUserById", 1);
         System.out.println(user);
         //验证1级缓存
@@ -42,9 +44,10 @@ public class AppOne {
         sqlSession = sessionFactory.openSession();
         //使用自定义TypeHandler
         sqlSession.insert("user.insertUser",user);
-        //使用默认
+        //使用默认,会清空一级和二级缓存
         sqlSession.insert("user.insertUser1",user);
 
+        //会清除一级缓存：clearLocalCache();
         sqlSession.commit();
 
     }
