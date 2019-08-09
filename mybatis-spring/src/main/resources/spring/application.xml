@@ -43,8 +43,7 @@
         <property name="dataSource" ref="dataSource"/>
         <!--手动配置xml文件-->
         <!--<property name="mapperLocations" value="classpath*:sqlmap/*.xml" />-->
-
-        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!--<property name="configLocation" value="classpath:mybatis-config.xml"/>-->
     </bean>
 
     <!--<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
@@ -56,7 +55,7 @@
         注意：maven中需要编译时，编译xml文件
     -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <!--不能使用*号通配符，扫描多个包是用半角逗号分隔-->
+        <!--不能使用*号通配符，扫描多个包是用半角逗号分隔(具体看源码org.springframework.context.ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS),尽量填写具体mapper包,以防扫描到不需要的接口类等-->
         <property name="basePackage" value="cn.zcp.demo.mapper"/>
         <property name="sqlSessionFactoryBeanName"  value="sqlSessionFactory"/>
     </bean>
